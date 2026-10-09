@@ -1,0 +1,26 @@
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[oc]
+*.egg-info
+.venv/
+
+# Generated runtime data (recreated by `python -m app.db.seed`)
+backend/data/
+
+# Node / frontend build
+node_modules/
+frontend/dist/
+dist-ssr/
+*.local
+
+# Logs / editors / OS
+*.log
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.DS_Store
