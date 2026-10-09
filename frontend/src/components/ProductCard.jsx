@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Star, ShoppingBag, Eye, Sparkles, Check } from 'lucide-react';
+import { Star, ShoppingBag, Sparkles, Check } from 'lucide-react';
 
 export default function ProductCard({
   product,

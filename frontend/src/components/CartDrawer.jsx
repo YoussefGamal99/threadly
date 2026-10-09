@@ -7,7 +7,7 @@ export default function CartDrawer({
   cart,
   onUpdateQty,
   onRemoveItem,
-  onClearCart,
+  _onClearCart,
 }) {
   if (!isOpen) return null;
 

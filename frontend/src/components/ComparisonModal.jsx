@@ -1,7 +1,7 @@
 import React from 'react';
-import { X, Sparkles, Star, Award, DollarSign } from 'lucide-react';
+import { X, Star } from 'lucide-react';
 
-export default function ComparisonModal({ comparison, onClose, onInspect }) {
+export default function ComparisonModal({ comparison, onClose }) {
   if (!comparison || !comparison.products?.length) return null;
 
   const { products, table, highlights } = comparison;

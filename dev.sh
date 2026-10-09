@@ -9,14 +9,25 @@ echo "=================================================="
 echo "    THREADLY ATELIER — AI STYLIST & CLOTHING STORE"
 echo "=================================================="
 
-# 1. Setup backend .env if missing
-if [ ! -f "$BACKEND_DIR/.env" ]; then
-    echo "[!] No backend/.env found. Creating from .env.example..."
+# 1. Setup .env if missing
+if [ ! -f "$BACKEND_DIR/.env" ] && [ ! -f "$DIR/.env" ]; then
+    echo "[!] No .env found. Creating backend/.env from .env.example..."
     cp "$BACKEND_DIR/.env.example" "$BACKEND_DIR/.env"
     echo "[!] Please ensure GROQ_API_KEY is configured in backend/.env"
 fi
 
-# 2. Seed database if missing
+# 2. Check and sync backend & frontend dependencies if needed
+if [ ! -d "$BACKEND_DIR/.venv" ]; then
+    echo "[*] Initializing backend virtual environment with uv sync..."
+    (cd "$BACKEND_DIR" && uv sync)
+fi
+
+if [ ! -d "$FRONTEND_DIR/node_modules" ]; then
+    echo "[*] Installing frontend npm dependencies..."
+    (cd "$FRONTEND_DIR" && npm install)
+fi
+
+# 3. Seed database if missing
 if [ ! -f "$BACKEND_DIR/data/store.db" ]; then
     echo "[*] Seeding store catalog & vector store..."
     (cd "$BACKEND_DIR" && uv run python -m app.db.seed --reset)

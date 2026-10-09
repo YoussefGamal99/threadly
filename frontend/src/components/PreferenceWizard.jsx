@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { X, ChevronRight, ChevronLeft, Sparkles, Check, DollarSign, Star, Sliders } from 'lucide-react';
+import React, { useState } from 'react';
+import { X, ChevronRight, ChevronLeft, Sparkles, Check } from 'lucide-react';
 
 export default function PreferenceWizard({ options, initialProfile = {}, onClose, onSubmit }) {
   const [step, setStep] = useState(1);

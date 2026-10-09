@@ -114,7 +114,7 @@ export default function App() {
     try {
       const res = await apiCompareProducts(comparingIds);
       setComparisonData(res);
-    } catch (err) {
+    } catch {
       alert("Could not load comparison.");
     }
   };

@@ -2,26 +2,28 @@
  * API client communicating with the FastAPI Threadly backend.
  */
 
+const API_BASE = (import.meta.env.VITE_API_BASE_URL || '').replace(/\/+$/, '');
+
 export async function fetchOptions() {
-  const res = await fetch('/api/options');
+  const res = await fetch(`${API_BASE}/api/options`);
   if (!res.ok) throw new Error('Failed to load store options');
   return res.json();
 }
 
 export async function fetchProduct(id) {
-  const res = await fetch(`/api/products/${id}`);
+  const res = await fetch(`${API_BASE}/api/products/${id}`);
   if (!res.ok) throw new Error('Product not found');
   return res.json();
 }
 
 export async function fetchCart(userId) {
-  const res = await fetch(`/api/cart?user_id=${encodeURIComponent(userId)}`);
+  const res = await fetch(`${API_BASE}/api/cart?user_id=${encodeURIComponent(userId)}`);
   if (!res.ok) throw new Error('Failed to fetch cart');
   return res.json();
 }
 
 export async function addToCart(userId, productId, size, qty = 1) {
-  const res = await fetch('/api/cart', {
+  const res = await fetch(`${API_BASE}/api/cart`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ user_id: userId, product_id: productId, size, qty }),
@@ -34,7 +36,7 @@ export async function addToCart(userId, productId, size, qty = 1) {
 }
 
 export async function updateCartQty(userId, productId, size, qty) {
-  const res = await fetch('/api/cart', {
+  const res = await fetch(`${API_BASE}/api/cart`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ user_id: userId, product_id: productId, size, qty }),
@@ -47,7 +49,7 @@ export async function updateCartQty(userId, productId, size, qty) {
 }
 
 export async function removeFromCart(userId, productId, size) {
-  let url = `/api/cart/${productId}?user_id=${encodeURIComponent(userId)}`;
+  let url = `${API_BASE}/api/cart/${productId}?user_id=${encodeURIComponent(userId)}`;
   if (size) url += `&size=${encodeURIComponent(size)}`;
   const res = await fetch(url, { method: 'DELETE' });
   if (!res.ok) throw new Error('Could not remove item');
@@ -55,24 +57,24 @@ export async function removeFromCart(userId, productId, size) {
 }
 
 export async function fetchProfile(userId) {
-  const res = await fetch(`/api/profile/${encodeURIComponent(userId)}`);
+  const res = await fetch(`${API_BASE}/api/profile/${encodeURIComponent(userId)}`);
   if (!res.ok) return {};
   return res.json();
 }
 
 export async function deleteProfile(userId) {
-  const res = await fetch(`/api/profile/${encodeURIComponent(userId)}`, { method: 'DELETE' });
+  const res = await fetch(`${API_BASE}/api/profile/${encodeURIComponent(userId)}`, { method: 'DELETE' });
   return res.json();
 }
 
 export async function fetchThreads(userId) {
-  const res = await fetch(`/api/threads/${encodeURIComponent(userId)}`);
+  const res = await fetch(`${API_BASE}/api/threads/${encodeURIComponent(userId)}`);
   if (!res.ok) return [];
   return res.json();
 }
 
 export async function compareProducts(productIds) {
-  const res = await fetch('/api/compare', {
+  const res = await fetch(`${API_BASE}/api/compare`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ product_ids: productIds }),
@@ -97,7 +99,7 @@ export async function streamChat({
   onError,
   onDone,
 }) {
-  const response = await fetch('/api/chat', {
+  const response = await fetch(`${API_BASE}/api/chat`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({

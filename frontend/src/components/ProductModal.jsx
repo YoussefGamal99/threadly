@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import { X, Star, ShoppingBag, Sparkles, Check } from 'lucide-react';
 
 export default function ProductModal({ product, onClose, onAddToCart, onCompleteOutfit }) {
-  if (!product) return null;
-
   const [selectedSize, setSelectedSize] = useState(() => {
-    const firstInStock = product.sizes?.find(s => s.stock > 0);
-    return firstInStock ? firstInStock.size : (product.sizes?.[0]?.size || 'M');
+    const firstInStock = product?.sizes?.find(s => s.stock > 0);
+    return firstInStock ? firstInStock.size : (product?.sizes?.[0]?.size || 'M');
   });
-  const [qty, setQty] = useState(1);
+  const [qty] = useState(1);
   const [isAdded, setIsAdded] = useState(false);
+
+  if (!product) return null;
 
   const inStock = product.in_stock !== false && product.sizes?.some(s => s.stock > 0);
 

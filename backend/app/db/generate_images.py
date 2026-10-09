@@ -1,9 +1,11 @@
 """Generate 26 elegant studio fashion product images with Pillow."""
 import math
+import os
 from pathlib import Path
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
 
-OUT_DIR = Path("/home/eco/Projects/LangChain_Projects/threadly/frontend/public/products")
+DEFAULT_OUT_DIR = Path(__file__).resolve().parents[3] / "frontend" / "public" / "products"
+OUT_DIR = Path(os.getenv("PRODUCT_IMG_DIR", str(DEFAULT_OUT_DIR)))
 OUT_DIR.mkdir(parents=True, exist_ok=True)
 
 # 26 product types with palettes and motifs

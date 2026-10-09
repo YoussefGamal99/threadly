@@ -1,5 +1,5 @@
 import React from 'react';
-import { X, MessageSquare, Plus, Trash2, UserCheck, Sparkles } from 'lucide-react';
+import { X, MessageSquare, Plus, Trash2, UserCheck } from 'lucide-react';
 
 export default function HistorySidebar({
   isOpen,

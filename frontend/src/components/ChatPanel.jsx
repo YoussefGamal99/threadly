@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Send, Sparkles, AlertCircle, ShoppingBag, ArrowUpRight } from 'lucide-react';
+import { Send, Sparkles, AlertCircle, ArrowUpRight } from 'lucide-react';
 import AgentTimeline from './AgentTimeline';
 import ProductCard from './ProductCard';
 import OutfitBoard from './OutfitBoard';

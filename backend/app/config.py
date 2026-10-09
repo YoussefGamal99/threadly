@@ -5,12 +5,15 @@ from pathlib import Path
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 BACKEND_DIR = Path(__file__).resolve().parent.parent
+ROOT_DIR = BACKEND_DIR.parent
 DATA_DIR = BACKEND_DIR / "data"
 
 
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(
-        env_file=BACKEND_DIR / ".env", env_file_encoding="utf-8", extra="ignore"
+        env_file=(ROOT_DIR / ".env", BACKEND_DIR / ".env"),
+        env_file_encoding="utf-8",
+        extra="ignore",
     )
 
     groq_api_key: str = ""
@@ -41,4 +44,8 @@ class Settings(BaseSettings):
 @lru_cache
 def get_settings() -> Settings:
     DATA_DIR.mkdir(parents=True, exist_ok=True)
-    return Settings()
+    settings = Settings()
+    settings.store_db_path.parent.mkdir(parents=True, exist_ok=True)
+    settings.memory_db_path.parent.mkdir(parents=True, exist_ok=True)
+    settings.chroma_dir.mkdir(parents=True, exist_ok=True)
+    return settings

@@ -7,10 +7,10 @@ An autonomous AI shopping assistant and personal stylist built with **LangChain 
 ## Quick Start (Run the App)
 
 ### 1. Set your Groq API Key
-Obtain a free API key at [console.groq.com/keys](https://console.groq.com/keys) and place it in `backend/.env`:
+Obtain a free API key at [console.groq.com/keys](https://console.groq.com/keys) and place it in `.env` (or `backend/.env`):
 ```bash
-cp backend/.env.example backend/.env
-# Edit backend/.env and set:
+cp .env.example .env
+# Edit .env and set:
 # GROQ_API_KEY=gsk_...
 ```
 

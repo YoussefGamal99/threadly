@@ -1,5 +1,5 @@
 import React from 'react';
-import { Sparkles, ArrowRight, ShieldCheck, Shirt, Ruler, Palette } from 'lucide-react';
+import { Sparkles, ArrowRight, ShieldCheck, Shirt, Ruler } from 'lucide-react';
 
 export default function Hero({ onStartWizard, onQuickPrompt }) {
   return (

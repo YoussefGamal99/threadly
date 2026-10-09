@@ -1,7 +1,7 @@
 import React from 'react';
-import { Sparkles, ShoppingBag, Plus } from 'lucide-react';
+import { Sparkles } from 'lucide-react';
 
-export default function OutfitBoard({ outfit, onInspect, onAddToCart }) {
+export default function OutfitBoard({ outfit, onInspect }) {
   if (!outfit || !outfit.items?.length) return null;
 
   const allItems = [outfit.anchor, ...outfit.items].filter(Boolean);

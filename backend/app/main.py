@@ -70,6 +70,19 @@ def health_check():
 
 
 # Mount static product images directory if it exists
-product_img_dir = Path(__file__).resolve().parent.parent.parent / "frontend" / "public" / "products"
+import os
+default_img_dir = Path(__file__).resolve().parent.parent.parent / "frontend" / "public" / "products"
+product_img_dir = Path(os.getenv("PRODUCT_IMG_DIR", str(default_img_dir)))
 product_img_dir.mkdir(parents=True, exist_ok=True)
 app.mount("/products", StaticFiles(directory=str(product_img_dir)), name="products")
+
+
+def main() -> None:
+    """Run the FastAPI application via uvicorn."""
+    import uvicorn
+    uvicorn.run("app.main:app", host="0.0.0.0", port=8000, reload=True)
+
+
+if __name__ == "__main__":
+    main()
+

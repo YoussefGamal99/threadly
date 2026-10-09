@@ -1,5 +1,5 @@
 import React from 'react';
-import { Ruler, Sparkles, CheckCircle2 } from 'lucide-react';
+import { Ruler } from 'lucide-react';
 
 export default function SizeAdviceCard({ advice }) {
   if (!advice) return null;
